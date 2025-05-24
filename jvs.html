@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Thư viện ảnh tương tác</title>
+  <style>
+    #image {
+      background-color: #e0e0e0;
+      height: 300px;
+      width: 500px;
+      text-align: center;
+      line-height: 300px;
+      font-size: 20px;
+      color: #333;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .preview {
+      height: 100px;
+      margin: 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Hiển thị ảnh khi rê chuột hoặc dùng bàn phím</h2>
+
+  <div id="image">Di chuột hoặc dùng Tab chọn ảnh để hiển thị ở đây.</div>
+
+  <!-- 6 ảnh với sự kiện đầy đủ -->
+  <img class="preview" 
+       onmouseover="upDate(this)" 
+       onmouseout="undo()" 
+       onfocus="upDate(this)" 
+       onblur="undo()" 
+       src="https://via.placeholder.com/500x300/ff7f7f" 
+       alt="Ảnh màu đỏ" 
+       tabindex="0" />
+
+  <img class="preview" 
+       onmouseover="upDate(this)" 
+       onmouseout="undo()" 
+       onfocus="upDate(this)" 
+       onblur="undo()" 
+       src="https://via.placeholder.com/500x300/7f7fff" 
+       alt="Ảnh màu xanh dương" 
+       tabindex="0" />
+
+  <img class="preview" 
+       onmouseover="upDate(this)" 
+       onmouseout="undo()" 
+       onfocus="upDate(this)" 
+       onblur="undo()" 
+       src="https://via.placeholder.com/500x300/7fff7f" 
+       alt="Ảnh màu xanh lá" 
+       tabindex="0" />
+
+  <img class="preview" 
+       onmouseover="upDate(this)" 
+       onmouseout="undo()" 
+       onfocus="upDate(this)" 
+       onblur="undo()" 
+       src="https://via.placeholder.com/500x300/ffff7f" 
+       alt="Ảnh màu vàng" 
+       tabindex="0" />
+
+  <img class="preview" 
+       onmouseover="upDate(this)" 
+       onmouseout="undo()" 
+       onfocus="upDate(this)" 
+       onblur="undo()" 
+       src="https://via.placeholder.com/500x300/ff7fff" 
+       alt="Ảnh màu hồng" 
+       tabindex="0" />
+
+  <img class="preview" 
+       onmouseover="upDate(this)" 
+       onmouseout="undo()" 
+       onfocus="upDate(this)" 
+       onblur="undo()" 
+       src="https://via.placeholder.com/500x300/7fffff" 
+       alt="Ảnh màu xanh nhạt" 
+       tabindex="0" />
+
+  <script>
+    window.onload = function() {
+      console.log("Trang đã tải xong");
+      addTabFocus();
+    };
+
+    function upDate(previewPic) {
+      console.log("Đang rê chuột hoặc focus vào:", previewPic.alt);
+      let displayDiv = document.getElementById('image');
+      displayDiv.style.backgroundImage = "url('" + previewPic.src + "')";
+      displayDiv.innerHTML = previewPic.alt;
+    }
+
+    function undo() {
+      let displayDiv = document.getElementById('image');
+      displayDiv.style.backgroundImage = "url('')";
+      displayDiv.innerHTML = "Di chuột hoặc dùng Tab chọn ảnh để hiển thị ở đây.";
+    }
+
+    function addTabFocus() {
+      console.log("Hàm addTabFocus được gọi");
+      const images = document.querySelectorAll('.preview');
+      for (let i = 0; i < images.length; i++) {
+        images[i].setAttribute('tabindex', '0');
+      }
+    }
+  </script>
+
+</body>
+</html>
